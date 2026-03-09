@@ -19,18 +19,14 @@ export function TokenSend() {
     }
 
     const handle = async () => {
-        const idPending = sessionStorage.getItem("idPending")
         const token = code.join("")
         try {
-            await axios.post("http://localhost:3000/create/token", {token, idPending})
+            await axios.post("http://localhost:3000/create/verify-token", {token}, { withCredentials: true })
             alert("conta criada com sucesso!!")
             nav("/home")
         } catch(error) {
             console.log(error)
         }
-
-        nav('/') 
-        // colocar o endereço para a próxima página!
     }
 
     const onkeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index:number) => {

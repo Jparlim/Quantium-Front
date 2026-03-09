@@ -63,12 +63,7 @@ export function CreateCount() {
         }
         
         try {
-            console.log(nome, email, senha, numero, CNPJ)
-            const data = await axios.post("http://localhost:3000/create", {nome, email, senha, CNPJ, numero})
-            
-            sessionStorage.setItem('idPending', data.data.id)
-
-            console.log(data.data.token)
+            await axios.post("http://localhost:3000/create", {nome, email, senha, CNPJ, numero}, { withCredentials:true })
 
             nav("/token")
         } catch(error) {
