@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import property0 from '../../../Images/Property 1=interface, Property 2=outline, Property 3=lock 01.svg'
 import property1 from '../../../Images/Property 1=interface, Property 2=outline, Property 3=unlock 01.svg'
+import { api } from "../../../api/index"
 
 export function CreateCount() {
     
@@ -63,7 +64,7 @@ export function CreateCount() {
         }
         
         try {
-            await axios.post("http://localhost:3000/create", {nome, email, senha, CNPJ, numero}, { withCredentials:true })
+            await api.post("http://localhost:3000/create", {nome, email, senha, CNPJ, numero}, { withCredentials:true })
 
             nav("/token")
         } catch(error) {
@@ -71,11 +72,13 @@ export function CreateCount() {
         }
     }
 
-
     return (
         <div className="flex h-screen w-screen">
 
-                <div className="bg-slate-700 w-[45%] h-full "/>
+                <div className="bg-slate-700 w-[45%] h-full flex items-center">
+                    <button className="bg-white text-black w-[220px] h-[60px] rounded-[15px] ml-[165px] active:bg-slate-400 hover:bg-slate-200"
+                    onClick={() => nav('/login')}>Login</button>
+                </div>
 
                 <div className="ml-[24px]">
                     <h1 className=" text-[48px] font-sans font-semibold">Criar conta</h1>

@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { api } from "../../../api/index"
 
 export function TokenSend() {
     const [code, setCode] = useState(Array(6).fill(""))
@@ -21,7 +21,7 @@ export function TokenSend() {
     const handle = async () => {
         const token = code.join("")
         try {
-            await axios.post("http://localhost:3000/create/verify-token", {token}, { withCredentials: true })
+            await api.post("http://localhost:3000/verify-token", {token}, { withCredentials: true })
             alert("conta criada com sucesso!!")
             nav("/home")
         } catch(error) {
@@ -38,7 +38,7 @@ export function TokenSend() {
     return (
         <div className="flex h-screen w-screen">
 
-            <div className="bg-slate-700 w-[45%] h-full"/>
+            <div className="bg-slate-700 w-[45%] h-full"></div>
 
             <div className="ml-[24px]">
                 <h1 className=" text-[48px] font-sans font-semibold">Criar conta</h1>

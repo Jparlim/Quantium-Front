@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { api } from "../../../api/index"
 
 export function Login() {
 
@@ -15,8 +15,8 @@ export function Login() {
         if(list.some(str => str.length === 0)) return alert('existem campos vazios!')
 
         try{
-            await axios.post('http://localhost:3000/login', {email, senha})
-            nav('')
+            await api.post('http://localhost:3000/login', {email, senha})
+            nav('/home')
         } catch(error) {
             console.log(error)
         }
@@ -24,7 +24,7 @@ export function Login() {
 
     return (
         <div className="flex h-screen items-center justify-center">
-            <div className="flex w-[1382px] h-[80%] rounded-[20px] shadow-2xl bg-white relative">
+            <div className="flex w-[1382px] h-[80%] rounded-[20px] mb-6 shadow-2xl bg-white relative">
                 <div className="ml-[115px] w-screen">
                     <h1 className=" text-[52px] font-sans font-semibold mt-[30px]">Login</h1>
                     <p className="text-[22px] font-normal h-[82px] w-[565px] mt-2">Bem vindo de volta a Quantyum!</p>
@@ -49,7 +49,10 @@ export function Login() {
                     </button>
                 </div>
 
-                <div className="bg-slate-700 w-[582px] h-full rounded-r-[20px] absolute right-0"/>
+                <div className="bg-slate-700 w-[582px] h-full rounded-r-[20px] absolute flex items-center right-0">
+                    <button className="bg-white text-black w-[220px] h-[60px] rounded-[15px] ml-[165px] active:bg-slate-400 hover:bg-slate-200"
+                    onClick={() => nav('/')}>Login</button>
+                </div>
             </div>
         </div>
     )
