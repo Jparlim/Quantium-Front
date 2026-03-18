@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import property0 from '../../../Images/Property 1=interface, Property 2=outline, Property 3=lock 01.svg'
