@@ -25,7 +25,7 @@ export function Rotas() {
                 </ProtectedRoute>
             }/>
             <Route path="/ia-config" element={
-                    <IA/>
+                <IA/>
             }/>
         </Routes>
     )

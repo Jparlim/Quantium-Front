@@ -11,6 +11,7 @@ import plus from "../../../Images/Plus.png"
 import pen from "../../../Images/Icon.png"
 import trash from "../../../Images/Icon (1).png"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 interface ListPerson {
     id: number,
@@ -143,6 +144,8 @@ export function Home() {
         return `${valor.slice(0, 2)} : ${valor.slice(2, 4)}`;
     }
 
+    const nav = useNavigate();
+
     return (
         <div className="bg-backGround h-screen flex items-center justify-center relative">
             <div className={`w-[95%] h-[95%] flex rounded-[20px] shadow-2xl bg-white relative`}>
@@ -158,7 +161,7 @@ export function Home() {
                         </div>
                         
                         <div className={`flex flex-col gap-[10px] mt-[10px] transition-all duration-500 opacity-100`}>
-                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]">
+                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]" onClick={() => nav("/home")}>
                                 <img src={home} className="size-[25px] " alt="" />
                                 <p className="text-[15px] ">Tela inicial</p>
                             </div>
@@ -168,7 +171,7 @@ export function Home() {
                                 <p className="text-[15px]">Estoque</p>
                             </div>
                             
-                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]">
+                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]" onClick={() => nav("/ia-config")}>
                                 <img src={IA} className="size-[25px] " alt="" />
                                 <p className="text-[15px]">Configuração IA</p>
                             </div>

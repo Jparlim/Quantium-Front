@@ -9,6 +9,7 @@ import clipboard from "../../../Images/Clipboard.png"
 import pen from "../../../Images/Icon.png"
 import trash from "../../../Images/Icon (1).png"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface datasIA {
     [nome:string]: {type: string | number | boolean}
@@ -17,6 +18,8 @@ interface datasIA {
 export function IA() {
     const [isOpen, setIsOpen] = useState(false);
     const [list, setlist] = useState<datasIA>({});
+
+    const nav = useNavigate();
 
     useEffect(() => {
         async function getDatasIA() {
@@ -59,7 +62,7 @@ export function IA() {
                         </div>
                         
                         <div className={`flex flex-col gap-[10px] mt-[10px] transition-all duration-500 opacity-100`}>
-                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]">
+                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]" onClick={() => nav("/home")} >
                                 <img src={home} className="size-[25px] " alt="" />
                                 <p className="text-[15px] ">Tela inicial</p>
                             </div>
@@ -69,7 +72,7 @@ export function IA() {
                                 <p className="text-[15px]">Estoque</p>
                             </div>
                             
-                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]">
+                            <div className="flex items-center gap-4 pl-8 hover:cursor-pointer hover:bg-azulButton h-[60px] transition-colors duration-200 rounded-bl-[10px] rounded-tl-[10px]" onClick={() => nav("/ia-config")}>
                                 <img src={ia} className="size-[25px] " alt="" />
                                 <p className="text-[15px]">Configuração IA</p>
                             </div>
@@ -169,22 +172,27 @@ export function IA() {
                         
                         <div className="w-[40%] h-auto border-[2px] rounded-md">
 
-                            <div className="flex justify-between mx-2 px-4 pr-36 border-b-2">
+                            <div className="flex justify-between mx-2 px-4 pr-52 border-b-2">
                                 <p className="text-[17px] text-black/50 font-sans font-semibold">Nome do dado</p>
                                 <p className="text-[17px] text-black/50 font-sans font-semibold">Tipo</p>
                             </div>
 
+                            <div className="flex h-8 justify-between mx-2 px-6 items-center">
+                                <p className="font-normal">Nome</p>
+                                <p className="font-normal pr-44">{"STRING"}</p>
+                            </div>
+
                             {Object.entries(list!).map(dado => {
                                 return (
-                                <div className="flex h-8 justify-between mx-2 px-6 border-b-2 items-center">
-                                    <p className="font-normal">{dado[0]}</p>
-                                    <p className="font-normal">{dado[1].type}</p>
+                                    <div className="flex h-8 justify-between mx-2 px-6 border-b-2 items-center">
+                                        <p className="font-normal">{dado[0]}</p>
+                                        <p className="font-normal">{dado[1].type}</p>
 
-                                    <div className="flex gap-2 size-5">
-                                        <img className="hover:cursor-pointer" src={pen} alt="" onClick={() => handleDeleteANDPut(dado[0], dado[1].type, "Put")}/>
-                                        <img className="hover:cursor-pointer" src={trash} alt="" onClick={() => handleDeleteANDPut(dado[0], dado[1].type, "Delete")}/>
+                                        <div className="flex gap-2 size-5">
+                                            <img className="hover:cursor-pointer" src={pen} alt="" onClick={() => handleDeleteANDPut(dado[0], dado[1].type, "Put")}/>
+                                            <img className="hover:cursor-pointer" src={trash} alt="" onClick={() => handleDeleteANDPut(dado[0], dado[1].type, "Delete")}/>
+                                        </div>
                                     </div>
-                                </div>
                             )})}
                         
                         </div>
